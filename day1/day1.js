@@ -1263,3 +1263,46 @@ for( let i = 1; i <= 100; i++){
         console.log(i);
     }
 }
+
+function kaliduwaa(angka){
+    const kalidua = angka.map(n => n * 2);
+    return console.log(kalidua)
+}
+kaliduwaa([1, 2, 3, 4, 5]); // Output: [2, 4, 6, 8, 10]
+
+function cetakganda(angka){
+    for(let i = 0; i < angka.length; i++){
+        console.log(`${angka[i]} x 2 = ${angka[i] * 2}`);
+    }
+}
+cetakganda([3, 7, 1]);
+
+function filterGanjilDanKaliDua(angka) {
+    const hasil = angka.filter(n => n % 2 !== 0).map(n => n * 2);
+    return hasil;
+}
+console.log(filterGanjilDanKaliDua([1, 2, 3, 4, 5]));
+
+function prosesAngka(angka){
+    const hasil = angka.filter(n => n % 2 === 0).reduce((prev, next) => prev + next, 0);
+    if(hasil % 2 === 0){
+        return `Jumlah angka genap adalah ${hasil}`;
+    }
+    return "Tidak ada angka genap";
+}
+console.log(prosesAngka([2, 3, 4, 7])) // Jumlah genap: 6
+console.log(prosesAngka([1, 5, 7, 9])) // Jumlah genap: 0 → tetap genap → "Jumlah genap: 0"
+console.log(prosesAngka([2, 5, 3])) // 2 → "Jumlah genap: 2"
+console.log(prosesAngka([2, 5, 3, 1])) // 2 → tetap "Jumlah genap: 2"
+
+function fixNama(nama){
+    if(typeof nama !== 'string' || nama.length === 0){
+        return "";
+    }
+    const namaKecil = nama.toLowerCase();
+    const katakata = namaKecil.split(' ');
+    const hurufKapitalAwal = katakata.map(k => k.charAt(0).toUpperCase() + k.slice(1));
+    return hurufKapitalAwal.join(' ');
+}
+console.log(fixNama("rAfA RaFa"))  //"Rafa Rafa"
+console.log(fixNama("anDRi yAn")) // "Andri Yan"
