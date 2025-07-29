@@ -1306,3 +1306,26 @@ function fixNama(nama){
 }
 console.log(fixNama("rAfA RaFa"))  //"Rafa Rafa"
 console.log(fixNama("anDRi yAn")) // "Andri Yan"
+
+const scores = [85, 42, 97, 63, 77, 58, 91];
+function getPassedStudents(scores) {
+    const passed = scores.filter(s => s >= 70);
+    const sorted = passed.sort((a,b ) => b -a);
+    console.log(`Students who passed: ${sorted.join(', ')}`);
+}
+getPassedStudents(scores); // Output: "Students who passed: 97, 91, 85, 77"
+
+const students = [
+  { name: "Rafa", score: 85 },
+  { name: "Adit", score: 42 },
+  { name: "Tari", score: 97 },
+  { name: "Lia", score: 63 },
+  { name: "Doni", score: 77 },
+  { name: "Fina", score: 58 },
+  { name: "Joko", score: 91 }
+];
+
+function getPassedNames(students) {
+    return students.filter(s => s.score >= 70).map(s => s.name).sort();
+}
+console.log(getPassedNames(students)); // Output: ["Rafa", "Tari", "Doni", "Joko"]
