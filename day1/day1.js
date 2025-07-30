@@ -1329,3 +1329,89 @@ function getPassedNames(students) {
     return students.filter(s => s.score >= 70).map(s => s.name).sort();
 }
 console.log(getPassedNames(students)); // Output: ["Rafa", "Tari", "Doni", "Joko"]
+
+for( let i = 1; i <= 20; i++){
+    if (i % 2 !== 0){
+        console.log(`${i}`)
+    }
+}
+
+const arrAngka = [4, 7, 1, 9, 3];
+function jumAngka(arr){
+    let total = 0
+    for(let i = 0; i < arr.length; i++){
+        total += arr[i];
+    }
+    return total
+}
+console.log(jumAngka(arrAngka))
+
+const todos = ["Belajar JS", "Ngoding proyek", "Review commit"];
+for(let i = 0; i < todos.length ; i++){
+    console.log(`${i + 1}. ${todos[i]}`)
+}
+
+function countEven(start){
+    let i = start;
+    while(i <= 20){
+        if(i % 2 === 0){
+            console.log(i);
+        }
+        i++
+    }
+    console.log('times up')
+}
+countEven(1);
+
+const nilaiorg = [87, 92, 45, 99, 76, 88];
+let max = nilaiorg[0];
+for(let i = 0; i < nilaiorg.length; i++){
+    if(nilaiorg[i] > max){
+        max = nilaiorg[i];
+    }
+}
+console.log("Nilai terbesar dalam array (menggunakan for loop):", max);
+
+let tasks = ["Belajar JS", "Ngoding proyek", "Review commit", "Main game"];
+function delTask(...taskname){
+    const filter = tasks.filter(task => !taskname.includes(task));
+    return filter.join(' ,')
+}
+console.log(delTask("Review commit", "Main game")); // Output: Belajar JS, Ngoding proyek
+
+const matriks = [
+  [10, 20],
+  [30, 40],
+  [50, 60]
+];
+
+for(let i = 0; i < matriks.length; i++){
+    for(let j = 0;j < matriks[i].length; j++){
+        console.log(matriks[i][j]);
+    }
+}
+
+let total = 0
+for(let i = 0; i < matriks.length; i++){
+    for(let j = 0; j < matriks[i].length; j++){
+       total += matriks[i][j];
+    }
+}
+console.log("Total dari semua elemen matriks:", total); // Output: 210
+
+
+const weeklyTasks = [
+  ["Belajar JS", "Ngoding proyek"],
+  ["Review PR", "Istirahat"],
+  ["Ngoding lagi", "Main bentar"]
+];
+for(let i = 0; i < weeklyTasks.length; i++){
+     console.log(`hari ke-${i + 1} :`);
+    for(let j = 0; j < weeklyTasks[i].length; j++){
+        console.log(`-${weeklyTasks[i][j]}`);
+    }
+    // Tambahkan baris kosong kecuali di hari terakhir
+    if (i < weeklyTasks.length - 1) {
+        console.log('');
+    }
+}
