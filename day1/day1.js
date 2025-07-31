@@ -1415,3 +1415,27 @@ for(let i = 0; i < weeklyTasks.length; i++){
         console.log('');
     }
 }
+
+const matrix =  [
+  [2, 4, 6],
+  [1, 3, 5],
+  [7, 9, 11]
+];
+
+for(let i = 0; i < matrix.length; i++){
+    let total = 0;
+    for(let j = 0; j < matrix[i].length; j++){
+        total += matrix[i][j];
+    }
+    console.log("Total dari baris", i + 1, "adalah:", total);
+}
+
+let hasilkali = [];
+for(let i = 0; i < matrix.length; i++){
+    let baris = [];
+    for(let j = 0; j < matrix[i].length; j++){
+        baris.push(matrix[i][j] * 2);
+    }
+    hasilkali.push(baris);
+}
+console.log(hasilkali); // Output: [[4, 8, 12], [2, 6, 10], [14, 18, 22]]
