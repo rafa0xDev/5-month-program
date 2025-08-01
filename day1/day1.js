@@ -1439,3 +1439,92 @@ for(let i = 0; i < matrix.length; i++){
     hasilkali.push(baris);
 }
 console.log(hasilkali); // Output: [[4, 8, 12], [2, 6, 10], [14, 18, 22]]
+
+const belanjaan = [
+  { nama: "Pensil", harga: 3000, kategori: "alat tulis" },
+  { nama: "Buku", harga: 7000, kategori: "alat tulis" },
+  { nama: "Penghapus", harga: 2000, kategori: "alat tulis" },
+  { nama: "Roti", harga: 5000, kategori: "makanan" },
+  { nama: "Pulpen", harga: 4000, kategori: "alat tulis" },
+  { nama: "Susu", harga: 6000, kategori: "makanan" }
+];
+const totHarga = belanjaan.reduce((prev, next) => prev + next.harga, 0);
+const listBarang = belanjaan.reduce((prev, next) => {
+  // Jika ini adalah elemen pertama, kembalikan hanya nama barangnya.
+  if (prev === '') {
+    return next.nama;
+  }
+  // Jika bukan, tambahkan koma dan spasi, lalu nama barangnya.
+  return prev + ', ' + next.nama;
+}, ''); // Nilai awal (initial value) adalah string kosong ''
+const barangYgDibeli = belanjaan.map(item => item.nama).join(', ');
+
+console.log("Total harga belanjaan:", totHarga); // Output: 16000
+console.log(`barang yang dibeli: ${barangYgDibeli}`); // Output: Pensil, Buku, Penghapus, Pulpen //cara map dan join
+console.log("Barang yang dibeli:", listBarang); //cara reduce
+// Output: Barang yang dibeli: Pensil, Buku, Penghapus, Pulpen
+
+function pisahKategori(kategori1, kategori2){
+    const filterkategori1 = belanjaan.filter(item => item.kategori === kategori1);
+    const filterkategori2 = belanjaan.filter(item => item.kategori === kategori2);
+
+    return {
+        [kategori1]: filterkategori1.map(item => item.nama).join(', '),
+        [kategori2]: filterkategori2.map(item => item.nama).join(', ')
+    }
+}
+console.log(pisahKategori("alat tulis", "makanan"));
+
+const pisahKategoriBanyak = belanjaan.reduce((prev, item) => {
+    // prev = {}
+    // item = { nama: "Pensil", ..., kategori: "alat tulis" }
+
+    // Cek apakah properti "alat tulis" sudah ada di objek prev
+    if(!prev[item.kategori]){
+        // Ternyata belum ada, karena prev masih {}
+        prev[item.kategori] = [];// Maka, buat properti itu dengan nilai array kosong
+    }
+    // Sekarang prev menjadi { "alat tulis": [] }
+
+    prev[item.kategori].push(item.nama);// Masukkan "Pensil" ke array itu
+    // prev sekarang { "alat tulis": ["Pensil"] }
+
+    return prev; // prev sekarang { "alat tulis": ["Pensil"] }
+}, {});
+console.log(pisahKategoriBanyak); //ini adalah cara reduce untuk memisahkan kategori yang banyak/tidak terbatas
+
+const pisahKtgTambah = belanjaan.reduce((prev, item) => {
+    if(!prev[item.kategori]){
+        prev[item.kategori] = { nama: [], harga: 0 };
+    }
+    prev[item.kategori].nama.push(item.nama);
+    prev[item.kategori].harga += item.harga;
+
+    return prev;
+}, {});
+console.log(pisahKtgTambah); //ini adalah cara reduce untuk memisahkan kategori, tapi ditambah kan juga total harga dan nama barangnya
+
+// Pertama, kita harus mengelompokkan dan menjumlahkan data seperti sebelumnya
+const pisahKategoriTambah = belanjaan.reduce((prev, item) => {
+    if (!prev[item.kategori]) {
+        prev[item.kategori] = { nama: [], harga: 0 };
+    }
+    prev[item.kategori].nama.push(item.nama);
+    prev[item.kategori].harga += item.harga;
+    return prev;
+}, {});
+
+// Kemudian, kita loop untuk mencetak hasilnya
+for (const kategori in pisahKtgTambah) {
+  const barang = pisahKtgTambah[kategori];
+  const listBarang = barang.nama.join(', ');
+  const totalHarga = new Intl.NumberFormat('id-ID', {
+    style: 'currency',
+    currency: 'IDR',
+    maximumFractionDigits: 0
+  }).format(barang.harga);
+
+  console.log(`Kategori: ${kategori}`);
+  console.log(`Barang: ${listBarang}`);
+  console.log(`Total Harga: ${totalHarga}\n`);
+}
