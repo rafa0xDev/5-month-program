@@ -1528,3 +1528,43 @@ for (const kategori in pisahKtgTambah) {
   console.log(`Barang: ${listBarang}`);
   console.log(`Total Harga: ${totalHarga}\n`);
 }
+
+const produkElectronik = [
+  { nama: "Mouse", harga: 150000 },
+  { nama: "Keyboard", harga: 300000 },
+  { nama: "Monitor", harga: 1200000 },
+  { nama: "Webcam", harga: 500000 }
+];
+
+const findmaratus = produkElectronik.find(n => n.harga > 500000);
+const cekharga = produkElectronik.some(n => n.harga < 100000);
+console.log(findmaratus, cekharga);
+
+const produkPc = [
+  { nama: "SSD 256GB", kategori: "Storage", harga: 550000 },
+  { nama: "HDD 1TB", kategori: "Storage", harga: 750000 },
+  { nama: "RAM 8GB", kategori: "Memory", harga: 400000 },
+  { nama: "RAM 16GB", kategori: "Memory", harga: 800000 },
+  { nama: "Mouse Wireless", kategori: "Peripheral", harga: 200000 },
+  { nama: "Keyboard RGB", kategori: "Peripheral", harga: 300000 },
+  { nama: "Monitor 24 inch", kategori: "Display", harga: 1300000 }
+];
+
+const tampilmaratus = produkPc.filter(n => n.harga > 500000).map(n => n.nama);
+const findOtak = produkPc.find(n => n.kategori === "Memory");
+const cekKatLap = produkPc.some(n => n.kategori === "Laptop");
+console.log(tampilmaratus, findOtak, cekKatLap);
+
+const kodePromo = [
+  "HEMAT50",
+  "diskon10",
+  "GRATISONGKIR",
+  "save20",
+  "CASHBACK5"
+];
+const displaykapital = kodePromo.filter(str => str === str.toUpperCase());
+const displayAngka = kodePromo.filter(str => /\d/.test(str));
+const hurufkecil = kodePromo.map(str => str.toLowerCase());
+console.log(displaykapital);
+console.log(displayAngka);
+console.log(hurufkecil)
