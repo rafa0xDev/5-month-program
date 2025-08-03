@@ -1567,4 +1567,29 @@ const displayAngka = kodePromo.filter(str => /\d/.test(str));
 const hurufkecil = kodePromo.map(str => str.toLowerCase());
 console.log(displaykapital);
 console.log(displayAngka);
-console.log(hurufkecil)
+console.log(hurufkecil);
+
+const dataAngka = [1, 3, 3, 5, 1, 7, 5];
+const unik = [...new Set(dataAngka)];
+console.log(unik);
+
+function cekduplikat(array){
+    const setArray = new Set(array)
+
+    return setArray.size !== array.length
+}
+console.log(cekduplikat(dataAngka));
+
+
+const kontakTelepon = new Map();
+
+kontakTelepon.set("Rafa", "08123456789");
+kontakTelepon.set("Santi", "08567890123");
+kontakTelepon.set("Andi", "08789012345");
+
+const namaYangDicari = "Rafa"
+const nomorTeleponRafa = kontakTelepon.get(namaYangDicari);
+
+console.log(`Nomor telepon ${namaYangDicari} adalah: ${nomorTeleponRafa}`);
+// Output: Nomor telepon Rafa adalah: 08123456789
+
