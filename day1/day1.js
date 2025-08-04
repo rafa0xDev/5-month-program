@@ -1593,3 +1593,49 @@ const nomorTeleponRafa = kontakTelepon.get(namaYangDicari);
 console.log(`Nomor telepon ${namaYangDicari} adalah: ${nomorTeleponRafa}`);
 // Output: Nomor telepon Rafa adalah: 08123456789
 
+function prosesAmba(arrAng, operasiHit){
+    return arrAng.map(operasiHit)
+}
+
+function kaliDua(n) {
+  return n * 2;
+}
+
+const liathasil = prosesAmba([1, 2, 3] , kaliDua)
+console.log(liathasil)
+
+function olehAngkaBertahap(arr, f1, f2){
+    const prosesF1 = arr.map(f1);
+    const hasilF2 = prosesF1.map(f2);
+    return hasilF2
+}
+
+function tambahSatu(n) {
+  return n + 1;
+}
+
+function kuadrat(n) {
+  return n * n;
+}
+
+const seehasil = olehAngkaBertahap([1, 2, 3], tambahSatu, kuadrat);
+// Proses:
+// [1,2,3] → tambahSatu → [2,3,4] → kuadrat → [4,9,16]
+
+console.log(seehasil); // [4, 9, 16]
+
+function hitungHargaAkhir(Mo, disc, tax) {
+  const hitDisc = Mo.map(harga => harga * (1 - disc)); // Diskon 20% (0.2)
+  const hitTax = hitDisc.map(harga => harga * (1 + tax)); // Pajak 12% (0.12)
+  
+  // Bulatkan setiap angka di dalam array agar tidak ada koma
+  return hitTax.map(harga => Math.round(harga)); 
+}
+
+const Mo = [100000, 200000];
+const disc = 0.20; // 20%
+const tax = 0.12; // 12%
+
+const hargaAkhir = hitungHargaAkhir(Mo, disc, tax);
+
+console.log(hargaAkhir); // Output: [89600, 179200]
