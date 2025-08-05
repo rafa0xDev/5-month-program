@@ -1638,4 +1638,25 @@ const tax = 0.12; // 12%
 
 const hargaAkhir = hitungHargaAkhir(Mo, disc, tax);
 
-console.log(hargaAkhir); // Output: [89600, 179200]
+console.log(hargaAkhir); // Output: [89600, 179200];
+
+const transaksiHidup = [
+  { id: 1, jenis: "makanan", total: 25000 },
+  { id: 2, jenis: "minuman", total: 10000 },
+  { id: 3, jenis: "makanan", total: 30000 },
+  { id: 4, jenis: "elektronik", total: 100000 },
+  { id: 5, jenis: "makanan", total: 15000 },
+  { id: 6, jenis: "minuman", total: 8000 }
+];
+
+const filterTransaksi = transaksiHidup.filter(t => t.total > 20000);
+const totHidup = transaksiHidup.reduce((prev, next) => prev + next.total, 0);
+const totmakan = transaksiHidup.filter(item => item.jenis === "makanan").map(item => item.total).reduce((prev,next) => prev + next, 0);
+const daftarTransaksi = transaksiHidup.map(item => {
+    return `Transaksi ${item.id} - ${item.jenis} - Total: Rp ${item.total}`
+});
+// Menampilkan semua hasil ke konsol
+console.log("Transaksi dengan total di atas 20000:", filterTransaksi);
+console.log("Total pengeluaran keseluruhan:", totHidup);
+console.log("Total pengeluaran makanan:", totmakan);
+console.log(daftarTransaksi);
