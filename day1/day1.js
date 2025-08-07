@@ -1660,3 +1660,42 @@ console.log("Transaksi dengan total di atas 20000:", filterTransaksi);
 console.log("Total pengeluaran keseluruhan:", totHidup);
 console.log("Total pengeluaran makanan:", totmakan);
 console.log(daftarTransaksi);
+
+const mySetup = [
+  { nama: "Mouse Gaming", harga: 150000, kategori: "Elektronik" },
+  { nama: "Kaos Polos", harga: 50000, kategori: "Fashion" },
+  { nama: "Keyboard Mechanical", harga: 350000, kategori: "Elektronik" },
+  { nama: "Celana Pendek", harga: 65000, kategori: "Fashion" },
+  { nama: "Charger HP", harga: 80000, kategori: "Elektronik" },
+];
+
+const filterElektronik = mySetup.filter(item => item.kategori === "Elektronik");
+const ArrtoString = filterElektronik.map(produk => {
+    return `Nama: ${produk.nama}, Harga: Rp ${produk.harga}`
+});
+const findUpBudget = mySetup.find(produk => {
+    const hasil = produk.harga > 300000
+    return hasil
+})
+
+console.log(filterElektronik);
+console.log(ArrtoString);
+console.log(findUpBudget);
+
+const users = [
+  { nama: "Rafa", online: true, umur: 17 },
+  { nama: "Dito", online: false, umur: 18 },
+  { nama: "Zahra", online: true, umur: 16 },
+  { nama: "Bima", online: false, umur: 19 },
+  { nama: "Tari", online: true, umur: 17 }
+];
+
+const userOnline = users.filter(user => user.online);
+const formatOnline = userOnline.map(user => {
+    return `Nama: ${user.nama}, Umur: ${user.umur}`
+})
+console.log(userOnline)
+const findUnderSeventh = userOnline.find(user => user.umur < 17);
+console.log(findUnderSeventh)
+const hitungUmurUsersAdult = userOnline.filter((user) => user.umur > 16).length;
+console.log(hitungUmurUsersAdult)
