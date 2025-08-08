@@ -1698,4 +1698,38 @@ console.log(userOnline)
 const findUnderSeventh = userOnline.find(user => user.umur < 17);
 console.log(findUnderSeventh)
 const hitungUmurUsersAdult = userOnline.filter((user) => user.umur > 16).length;
-console.log(hitungUmurUsersAdult)
+console.log(hitungUmurUsersAdult);
+
+// TODO: Isi logika filter agar hanya angka genap yang tersisa
+const angkarandom = [1, 4, 7, 10, 13, 16, 19];
+
+const filtergenap = angkarandom.filter(n => n % 2 === 0);
+console.log(filtergenap);
+const filterganjil = angkarandom.filter(n => n % 2 !== 0);
+console.log(filterganjil);
+
+const angkaonetofive = [1, 2, 3, 4, 5];
+const kalitiga = angkaonetofive.map(n => n * 3);
+console.log(kalitiga);
+
+const belanja = [
+  { nama: "Buku", harga: 25000 },
+  { nama: "Pulpen", harga: 5000 },
+  { nama: "Tas", harga: 150000 },
+  { nama: "Penggaris", harga: 7000 }
+];
+
+const hitungHargaTotal = belanja.reduce((prev, next) => prev + next.harga, 0);
+const formatMataUang = new Intl.NumberFormat("id-ID", {
+    style: "currency",
+    currency: "IDR",
+})
+console.log(formatMataUang.format(hitungHargaTotal));
+
+const belanjaKeperluanSekolah = [
+  { nama: "Buku", harga: 25000, jumlah: 2 },
+  { nama: "Pensil", harga: 5000, jumlah: 5 },
+  { nama: "Penggaris", harga: 7000, jumlah: 1 }
+];
+const hargaKaliJumlah = belanjaKeperluanSekolah.reduce((prev, next) => prev + next.harga * next.jumlah, 0);
+console.log(formatMataUang.format(hargaKaliJumlah))
