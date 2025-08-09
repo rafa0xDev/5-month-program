@@ -1732,4 +1732,39 @@ const belanjaKeperluanSekolah = [
   { nama: "Penggaris", harga: 7000, jumlah: 1 }
 ];
 const hargaKaliJumlah = belanjaKeperluanSekolah.reduce((prev, next) => prev + next.harga * next.jumlah, 0);
-console.log(formatMataUang.format(hargaKaliJumlah))
+console.log(formatMataUang.format(hargaKaliJumlah));
+
+const products = [
+  { name: "Laptop", price: 8500000, stock: 5 },
+  { name: "Mouse", price: 150000, stock: 20 },
+  { name: "Keyboard", price: 300000, stock: 10 },
+  { name: "Monitor", price: 2000000, stock: 2 },
+  { name: "USB Cable", price: 50000, stock: 50 }
+];
+
+// Ambil hanya produk yang harganya di bawah 1 juta.
+const undersatujt = products.filter(p => p.price < 1000000);
+const totalbarangUnderSatujeti = undersatujt.reduce((prev, next) => prev + next.price * next.stock, 0);
+const daftarBarang = undersatujt.map(p => p.name);
+
+const result = {
+        daftar: daftarBarang,
+        total: totalbarangUnderSatujeti
+    }
+
+    console.log(result);
+
+const prodToUppercase = undersatujt.map(p => p.name.toUpperCase());
+const sortFormCheap = undersatujt.sort((a, b) => a.price - b.price);
+console.log(prodToUppercase)
+console.log(sortFormCheap)
+
+console.table(sortFormCheap.map(p => ({
+    Nama : p.name.toUpperCase(),
+    Harga : p.price,
+    Stok : p.stock
+})));
+
+const StockProductUp10 = undersatujt.filter(p => p.stock > 10);
+const hargaUnder500 = StockProductUp10.filter(p => p.price < 500000).length;
+console.log(hargaUnder500); 
