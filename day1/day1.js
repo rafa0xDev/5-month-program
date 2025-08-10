@@ -1723,7 +1723,7 @@ const hitungHargaTotal = belanja.reduce((prev, next) => prev + next.harga, 0);
 const formatMataUang = new Intl.NumberFormat("id-ID", {
     style: "currency",
     currency: "IDR",
-})
+});
 console.log(formatMataUang.format(hitungHargaTotal));
 
 const belanjaKeperluanSekolah = [
@@ -1768,3 +1768,39 @@ console.table(sortFormCheap.map(p => ({
 const StockProductUp10 = undersatujt.filter(p => p.stock > 10);
 const hargaUnder500 = StockProductUp10.filter(p => p.price < 500000).length;
 console.log(hargaUnder500); 
+
+
+const aproducts = [
+  { name: "Laptop", price: 7500000, stock: 5 },
+  { name: "Mouse", price: 150000, stock: 50 },
+  { name: "Keyboard", price: 300000, stock: 0 },
+  { name: "Monitor", price: 2000000, stock: 7 },
+  { name: "USB Cable", price: 50000, stock: 100 }
+];
+
+const filterStock = aproducts.filter(p => p.stock > 5).map(p => p.name.toUpperCase());
+console.table(filterStock);
+
+const sortFromAffordable = aproducts.filter(p => p.stock > 5).sort((a, b) => a.price - b.price).map(p => ({
+    Nama : p.name.toUpperCase(),
+    Harga : p.price
+}));
+console.log(sortFromAffordable);
+
+const bproducts = [
+  { name: "Laptop", price: 7500000, stock: 5 },
+  { name: "Mouse", price: 150000, stock: 50 },
+  { name: "Keyboard", price: 300000, stock: 0 },
+  { name: "Monitor", price: 2000000, stock: 7 },
+  { name: "USB Cable", price: 50000, stock: 100 }
+];
+
+const stockEven5 = bproducts.filter(p => p.stock > 5);
+const sortStock = stockEven5.sort((a, b) => a.price - b.price);
+const stockToupper = sortStock.map(p => ({
+    Nama : p.name.toUpperCase(),
+    Harga : formatMataUang.format(p.price)
+}));
+const costTotalProduct = stockEven5.reduce((prev, next) => prev + next.price, 0);
+console.table(stockToupper);
+console.log(formatMataUang.format(costTotalProduct));
