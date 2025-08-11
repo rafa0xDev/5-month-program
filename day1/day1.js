@@ -1804,3 +1804,46 @@ const stockToupper = sortStock.map(p => ({
 const costTotalProduct = stockEven5.reduce((prev, next) => prev + next.price, 0);
 console.table(stockToupper);
 console.log(formatMataUang.format(costTotalProduct));
+
+const studentss = [
+  { name: "Rafa", score: 85 },
+  { name: "Dito", score: 72 },
+  { name: "Zahra", score: 90 },
+  { name: "Bima", score: 65 },
+  { name: "Tari", score: 78 }
+];
+
+const filterLolos = studentss.filter(s => s.score >= 80);
+const namasiswaUP = filterLolos.map(n => n.name.toUpperCase());
+console.log(namasiswaUP);
+
+const productTierS = [
+  { name: "Laptop", price: 7500000, stock: 5 },
+  { name: "Mouse", price: 150000, stock: 50 },
+  { name: "Keyboard", price: 300000, stock: 0 },
+  { name: "Monitor", price: 2000000, stock: 7 },
+  { name: "USB Cable", price: 50000, stock: 100 }
+];
+
+const productfilterstock = productTierS.filter(item => item.stock > 5);
+const formatItem = productfilterstock.map(item => ({
+    productName : item.name.toUpperCase(), price : item.price
+}));
+const sortItemfromcheap = formatItem.sort((a, b) => a.price - b.price);
+console.log(sortItemfromcheap);
+
+const orders = [
+  { customer: "Rafa", total: 7500000, status: "completed" },
+  { customer: "Dito", total: 150000, status: "pending" },
+  { customer: "Zahra", total: 2000000, status: "completed" },
+  { customer: "Bima", total: 500000, status: "completed" },
+  { customer: "Tari", total: 300000, status: "pending" }
+];
+
+const orderList = orders.filter(stats => stats.status === "completed").map(cust => ({
+    customer: cust.customer.toUpperCase(), total : cust.total
+})).sort((a, b) => a.total - b.total);
+const totalOrder = orderList.reduce((prev, next) => prev + next.total, 0);
+
+console.log(orderList);
+console.log(formatMataUang.format(totalOrder));
