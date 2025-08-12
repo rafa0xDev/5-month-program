@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background: #a8c0ff;  /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #3f2b96, #a8c0ff);  /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #3f2b96, #a8c0ff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: #fff;
+        }
+
+        .container {
+            background-color: rgba(225, 225, 225, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            border: 2px solid black;
+            margin-top: 8rem;
+            text-align: center;
+            width: 20rem;
+            height: auto;
+        }
+
+        .inout-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 1em;
+        }
+
+        .inout-container input {
+            background-color: rgba(255, 255, 255, 0.2); /* Warna latar belakang transparan */
+            border: 1px solid rgba(255, 255, 255, 0.5); /* Garis tepi yang samar */
+            border-radius: 5px; /* Sudut membulat */
+            color: #fff; /* Warna teks */
+            padding: 0.5rem; /* Ruang di dalam input */
+            width: 15rem; /* Lebar input */
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1); /* Bayangan di dalam */
+        }
+
+        /* Style untuk placeholder (teks "add your task sir...") */
+        .inout-container input::placeholder {
+            color: rgba(255, 255, 255, 0.7); /* Warna teks placeholder yang lebih terang */
+        }
+
+        /* Style saat input dalam keadaan fokus (diklik) */
+        .inout-container input:focus {
+            outline: none; /* Menghilangkan garis biru bawaan dari browser */
+            border-color: #fff; /* Mengubah warna garis tepi menjadi putih */
+        }
+
+        .inout-container button {
+            background-color: rgb(5, 212, 5);
+            border-radius: 10px;
+            border: none;
+            width: 6rem;
+            height: 2rem;
+            color: #fff;
+            transition: all 0.3s ease-in-out
+        }
+        
+        .inout-container button:hover {
+            background-color: rgb(2, 167, 2); 
+        }
+
+        .task-container {
+            background-color: rgba(225, 225, 225, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            border: 2px solid black;
+            margin-top: 2rem; /* Menambahkan jarak dari container di atasnya */
+            text-align: left;
+            width: 20rem;
+            height: auto;
+        }
+
+        .task-container h2 {
+            text-align: center;
+        }
+
+        #taskList {
+            list-style-type: none; /* Menghilangkan bullet point bawaan */
+            padding: 0; /* Menghilangkan padding bawaan */
+            margin: 0; /* Menghilangkan margin bawaan */
+        }
+
+        #taskList li {
+            background-color: rgba(255, 255, 255, 0.1); /* Warna latar belakang item */
+            padding: 0.75rem;
+            border-radius: 5px;
+            margin-bottom: 0.5rem; /* Memberi jarak antar item */
+            display: flex; /* Menggunakan flexbox untuk penempatan elemen */
+            justify-content: space-between; /* Menempatkan teks dan tombol secara terpisah */
+            align-items: center; /* Menyelaraskan secara vertikal */
+            color: #fff;
+            word-break: break-word; /* Memastikan teks panjang tidak keluar wadah */
+            transition: background-color 0.3s ease; /* Efek transisi halus */
+        }
+
+        #taskList li:hover {
+            background-color: rgba(255, 255, 255, 0.2); /* Efek hover halus pada item */
+        }
+
+        #taskList li.completed {
+            text-decoration: line-through; /* Memberi garis tengah jika tugas selesai */
+            opacity: 0.7; /* Membuat item yang selesai sedikit transparan */
+        }
+
+        .delete-btn {
+            background-color: #e74c3c; /* Warna merah */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 0.3rem 0.6rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .delete-btn:hover {
+            background-color: #c0392b; /* Warna merah yang lebih gelap saat hover */
+        }
+
+        .fade-out {
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Tood list</h2>
+        <div class="inout-container">
+            <input type="text" id="taskInput" placeholder="add your task sir...">
+            <button type="submit" id="addTaskBtn">Add task</button>
+        </div>
+    </div>
+    <div class="task-container">
+        <h2>list task here</h2>
+        <ul id="taskList">
+
+        </ul>
+    </div>
+
+    <script>
+        const taskinput = document.getElementById("taskInput");
+        const addbtn = document.getElementById("addTaskBtn");
+        const tasklist = document.getElementById("taskList");
+
+        function addTask () {
+            const taskText = taskinput.value.trim();
+            if(taskText === "") {
+                alert("please enter your task");
+                return
+            }
+
+            const li = document.createElement("li");
+            // Membuat elemen span untuk teks tugas
+            const taskSpan = document.createElement("span");
+            taskSpan.textContent = taskText;
+            li.appendChild(taskSpan);
+
+            // Membuat tombol hapus
+            const deleteBtn = document.createElement("button");
+            deleteBtn.textContent = "Hapus";
+            deleteBtn.classList.add('delete-btn');
+            
+            // Event listener untuk tombol hapus
+            deleteBtn.addEventListener("click", (e) => {
+                e.stopPropagation(); // Mencegah event click pada 'li' ikut terpicu
+                
+                // 1. Tambahkan kelas fade-out pada li
+                li.classList.add('fade-out');
+
+                // 2. Tunggu hingga transisi selesai, lalu hapus elemen
+                li.addEventListener('transitionend', () => {
+                    li.remove();
+                }, { once: true }); // Opsi {once: true} memastikan event listener hanya berjalan satu kali
+            });
+
+            li.appendChild(deleteBtn);
+            
+            // Event listener untuk menandai tugas selesai
+            li.addEventListener("click", () => {
+                li.classList.toggle('completed');
+            });
+
+            tasklist.appendChild(li);
+            taskinput.value = "";
+        }
+
+        addbtn.addEventListener("click", addTask);
+
+        taskinput.addEventListener("keypress", (e) => {
+            if(e.key === "Enter"){
+                addTask();
+            }
+        })
+    </script>
+</body>
+</html>
