@@ -1847,3 +1847,38 @@ const totalOrder = orderList.reduce((prev, next) => prev + next.total, 0);
 
 console.log(orderList);
 console.log(formatMataUang.format(totalOrder));
+
+const studentsPeler = [
+  { name: "Rafa", score: 80 },
+  { name: "Dito", score: 65 },
+  { name: "Zahra", score: 90 },
+  { name: "Bima", score: 70 },
+  { name: "Tari", score: 75 }
+];
+
+const filterNilai = studentsPeler.filter(n => n.score >= 75);
+const nameToUppercase = filterNilai.map(p => p.name.toUpperCase());
+const sortAtoZ = nameToUppercase.sort();
+console.log(sortAtoZ);
+
+const productsAnjay = [
+  { name: "Laptop", price: 7500000, stock: 5 },
+  { name: "Mouse", price: 150000, stock: 50 },
+  { name: "Keyboard", price: 300000, stock: 0 },
+  { name: "Monitor", price: 2000000, stock: 7 },
+  { name: "USB Cable", price: 50000, stock: 100 }
+];
+
+// Menghitung total harga
+const totalHarga = productsAnjay
+  .filter(s => s.stock >= 0)
+  .reduce((prev, next) => prev + next.price, 0);
+
+// Mendapatkan array nama produk
+const namaProduk = productsAnjay
+  .filter(s => s.stock >= 0)
+  .sort((a, b) => a.price - b.price)
+  .map(n => n.name.toUpperCase());
+
+console.log(totalHarga); // Output: 10000000
+console.log(namaProduk); // Output: ["USB CABLE", "MOUSE", "KEYBOARD", "MONITOR", "LAPTOP"]
