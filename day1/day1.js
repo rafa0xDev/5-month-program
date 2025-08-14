@@ -1881,4 +1881,33 @@ const namaProduk = productsAnjay
   .map(n => n.name.toUpperCase());
 
 console.log(totalHarga); // Output: 10000000
-console.log(namaProduk); // Output: ["USB CABLE", "MOUSE", "KEYBOARD", "MONITOR", "LAPTOP"]
+console.log(namaProduk); // Output: ["USB CABLE", "MOUSE", "KEYBOARD", "MONITOR", "LAPTOP"];
+
+const numbers = [2, 5, 8, 13, 21, 34, 55];
+const dispResult = numbers.filter(n => n > 10).map(n => n ** 2);
+console.log(dispResult)
+
+const productGatel = [
+  { name: "Laptop", price: 7500000, stock: 5 },
+  { name: "Mouse", price: 150000, stock: 50 },
+  { name: "Keyboard", price: 300000, stock: 0 },
+  { name: "Monitor", price: 2000000, stock: 7 },
+  { name: "USB Cable", price: 50000, stock: 100 }
+];
+
+const displayResult = productGatel.filter(item => item.stock > 5).map(item => item.name.toUpperCase())
+console.log(displayResult)
+
+const opoiki = [
+  { name: "Laptop", price: 7500000, stock: 5 },
+  { name: "Mouse", price: 150000, stock: 50 },
+  { name: "Keyboard", price: 300000, stock: 0 },
+  { name: "Monitor", price: 2000000, stock: 7 },
+  { name: "USB Cable", price: 50000, stock: 100 }
+];
+
+const displayReslt = opoiki.filter(item => item.stock > 5).map(item => ({
+    name : item.name.toUpperCase(),
+    total : item.price * item.stock
+}));
+console.table(displayReslt)
