@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alert DOM</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 16px;
+        }
+
+        #btn-alert {
+            background-color: #4CAF50; /* Warna latar belakang */
+            color: white; /* Warna teks */
+            padding: 4px 1rem; /* Padding dan ukuran */
+            text-align: center; /* Penataan teks */
+            text-decoration: none; /* Dekorasi teks */
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer; /* Cursor saat mouse diatas button */
+            border-radius: 1rem;
+            border: none;
+            transition: background-color 0.3s;
+        }
+
+        #btn-alert:hover{
+             background-color: #45a049;
+        }
+
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            transition: background-color 0.3s;
+        }
+        #addbtn {
+            background-color: #4CAF50; /* Hijau */
+        }
+        #addbtn:hover {
+            background-color: #45a049;
+        }
+        #delbtn {
+            background-color: #f44336; /* Merah */
+        }
+        #delbtn:hover {
+            background-color: #da190b;
+        }
+        #editbtn {
+            background-color: #2196F3; /* Biru */
+        }
+        #editbtn:hover {
+            background-color: #0b7dda;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            text-align: left;
+        }
+        li {
+            padding: 10px 15px;
+            border-bottom: 1px solid #ddd;
+            background-color: #f9f9f9;
+        }
+        li:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>press <button id="btn-alert">Me</button></h1>
+    <div class="group-btn">
+        <button id="addbtn">add item</button>
+        <button id="delbtn">delete item</button>
+        <button id="editbtn">edit item</button>
+    </div>
+    <ul id="listItem">
+        
+    </ul>
+    <script>
+        function showAlert() {
+            alert("Halo, Rafa! Kamu sudah berhasil membuat event click.");
+        }
+
+        document.getElementById("btn-alert").addEventListener("click", showAlert);
+
+        const listItem = document.getElementById("listItem");
+        const addbtn = document.getElementById("addbtn");
+        const delbtn = document.getElementById("delbtn");
+        const editbtn = document.getElementById("editbtn");
+
+        let numItem = 0
+
+        addbtn.addEventListener("click", () => {
+            numItem++;
+            const item = document.createElement("li");
+            item.textContent = `Item ${numItem}`;
+            listItem.appendChild(item);
+        });
+
+        delbtn.addEventListener("click", () => {
+            const allitem = listItem.querySelectorAll("li");
+            if(allitem.length > 0){
+                listItem.removeChild(allitem[allitem.length - 1]);
+            }else {
+                alert('Tidak ada item yang bisa dihapus!');
+            }
+        });
+
+        editbtn.addEventListener("click", () => {
+            const firstItem = listItem.querySelector("li");
+             if (firstItem) {
+                firstItem.textContent = 'Item Pertama (Edited)'; // Ubah teksnya
+            } else {
+                alert('Tidak ada item pertama yang bisa diedit!');
+            }
+        })
+    </script>
+</body>
+</html>
