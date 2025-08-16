@@ -1910,4 +1910,46 @@ const displayReslt = opoiki.filter(item => item.stock > 5).map(item => ({
     name : item.name.toUpperCase(),
     total : item.price * item.stock
 }));
-console.table(displayReslt)
+console.table(displayReslt);
+
+const numbars = [12, 5, 8, 130, 44, 2, 99];
+const bigNumbars = numbars.filter(n => n > 10).map(n => n * 2);
+console.log(bigNumbars);
+
+const setup = [
+  { name: "Laptop", price: 7500000, stock: 5 },
+  { name: "Mouse", price: 150000, stock: 50 },
+  { name: "Keyboard", price: 300000, stock: 0 },
+  { name: "Monitor", price: 2000000, stock: 7 },
+  { name: "USB Cable", price: 50000, stock: 100 }
+];
+const upercase = setup.map(n => n.name.toUpperCase());
+const dislay = setup.filter(s => s.stock > 0).reduce((prev, next) => prev + (next.price * next.stock), 0);
+console.log(formatMataUang.format(dislay));
+
+const displek = setup.filter(s => s.stock > 0).sort((a, b) => a.price - b.price).slice(0,3);
+console.log(displek)
+
+displek.forEach(item => {
+    console.log(`Nama: ${item.name.toUpperCase()}, Harga: ${formatMataUang.format(item.price)}, Stok: ${item.stock}`)
+})
+
+const resultsetup = setup.reduce((accumulator, currentItem) => {
+  // Cek produk termahal
+  if (currentItem.price > accumulator.mostExpensive.price) {
+    accumulator.mostExpensive = currentItem;
+  }
+
+  // Cek produk dengan stok terbanyak
+  if (currentItem.stock > accumulator.mostStocked.stock) {
+    accumulator.mostStocked = currentItem;
+  }
+
+  return accumulator;
+}, {
+  mostExpensive: { price: -Infinity }, // Nilai awal untuk harga
+  mostStocked: { stock: -Infinity }   // Nilai awal untuk stok
+});
+
+console.log("Produk Termahal:", resultsetup.mostExpensive.name);
+console.log("Produk dengan Stok Terbanyak:", resultsetup.mostStocked.name);
