@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Produk</title>
+</head>
+<body>
+    <h1>Daftar Produk</h1>
+    <ul id="product-list"></ul>
+    <ul id="productList"></ul>
+    <script>
+        const setup = [
+        { name: "Laptop", price: 7500000, stock: 5 },
+        { name: "Mouse", price: 150000, stock: 50 },
+        { name: "Keyboard", price: 300000, stock: 0 },
+        { name: "Monitor", price: 2000000, stock: 7 },
+        { name: "USB Cable", price: 50000, stock: 100 }
+        ];
+
+        const productList = document.getElementById("product-list");
+
+        function renderProduct(product) {
+            const productElement = document.createElement("LI");
+            productElement.textContent = `Nama Produk : ${product.name} - Rp ${product.price},- Stock : ${product.stock}`;
+            productList.appendChild(productElement);
+
+        }
+
+        const products = setup.filter(item => item.stock > 0);
+        products.forEach(renderProduct);
+
+    </script>
+</body>
+</html>
