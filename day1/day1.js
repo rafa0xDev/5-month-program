@@ -1953,3 +1953,65 @@ const resultsetup = setup.reduce((accumulator, currentItem) => {
 
 console.log("Produk Termahal:", resultsetup.mostExpensive.name);
 console.log("Produk dengan Stok Terbanyak:", resultsetup.mostStocked.name);
+
+const belanjaSembako = ["Beras", "Telur", "Minyak", "Gula"];
+
+// 1. Tambahkan "Kopi" ke daftar belanja
+belanjaSembako.push("Kopi");
+console.log("Setelah menambah 'Kopi':", belanjaSembako);
+
+// 2. Hapus item terakhir dari daftar belanja
+belanjaSembako.pop();
+console.log("Setelah menghapus item terakhir:", belanjaSembako);
+
+// 3. Hapus "Minyak" dari daftar belanja
+const indexMinyak = belanjaSembako.indexOf("Minyak");
+if (indexMinyak !== -1) {
+  belanjaSembako.splice(indexMinyak, 1);
+}
+console.log("Setelah menghapus 'Minyak':", belanjaSembako);
+
+// 4. Ambil hanya dua item pertama ("Beras" dan "Telur") sebagai array baru
+const belanjaPokok = belanjaSembako.slice(0, 2);
+console.log("Daftar belanja pokok:", belanjaPokok);
+
+let produkKorututara = [
+  { nama: "Laptop", harga: 7500000 },
+  { nama: "Mouse", harga: 150000 },
+  { nama: "Keyboard", harga: 300000 },
+];
+
+// add new product
+function addNewProduct(produk, nama, harga) {
+    const NewProduct = {
+        nama: nama,
+        harga: harga
+    }
+    produk.push(NewProduct);
+    return produk;
+}
+console.log(addNewProduct(produkKorututara, "Monitor", 2000000));
+
+// del mouse 
+function deleteMouse(produk, nama){
+    const index = produk.findIndex(item => item.nama === nama);
+    if (index !== -1) {
+        produk.splice(index, 1);
+    }
+    return produk
+};
+console.log(deleteMouse(produkKorututara, "Mouse"));
+
+// 3. Ubah harga "Keyboard"
+function UpdateHarga(produk, nama, Newharga){
+    const findItem = produk.find(item => item.nama === nama);
+    if (findItem) {
+        findItem.harga = Newharga;
+        }
+    return produk
+}
+console.log(UpdateHarga(produkKorututara,"Keyboard",350000))
+
+// display produk tanpa harga
+const displayproduk = produkKorututara.map(n => n.nama)
+console.log(displayproduk);
