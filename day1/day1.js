@@ -2015,3 +2015,32 @@ console.log(UpdateHarga(produkKorututara,"Keyboard",350000))
 // display produk tanpa harga
 const displayproduk = produkKorututara.map(n => n.nama)
 console.log(displayproduk);
+
+const studentscok = [
+  { name: "Rina", score: 85 },
+  { name: "Budi", score: 72 },
+  { name: "Sari", score: 90 },
+  { name: "Andi", score: 65 },
+  { name: "Dewi", score: 78 },
+];
+
+const filterVal = studentscok.filter(vs => vs.score >= 75);
+const getName = filterVal.map(std => std.name);
+const sumScore = studentscok.reduce((prev, next) => prev + next.score, 0);
+const avgScore = sumScore / studentscok.length;
+
+function getTopStudents(data){
+    if(data.length === 0){
+        return null
+    }
+    const getSumAvg = data.reduce((prev, next) => {
+         if(next.score > prev.score){
+            return next;
+         }else {
+            return prev;
+         }
+    });
+    return getSumAvg
+}
+const topStd = getTopStudents(studentscok);
+console.log(topStd)
