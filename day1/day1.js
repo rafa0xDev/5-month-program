@@ -2043,4 +2043,56 @@ function getTopStudents(data){
     return getSumAvg
 }
 const topStd = getTopStudents(studentscok);
-console.log(topStd)
+console.log(topStd);
+
+const studentsJnck = [
+  { name: "Rina", score: 85 },
+  { name: "Budi", score: 72 },
+  { name: "Sari", score: 90 },
+  { name: "Andi", score: 65 },
+  { name: "Dewi", score: 78 },
+];
+
+function getGrade(data){
+    switch(true){
+        case(data.score >= 85 && data.score <= 100):
+            return "A"
+        case(data.score >= 70 && data.score <= 84):
+            return "B"
+        case(data.score >= 60 && data.score <= 69):
+            return "C"
+        case(data.score < 60):
+            return "D"
+
+        default :
+            return "cannot giving grade's"
+    };  
+}
+
+const giveGrade = studentsJnck.map(student => {
+    return {
+        ...student,
+        grade : getGrade(student)
+    };
+});
+console.log(giveGrade);
+
+const howManyAgrades = giveGrade.filter(std => std.grade === "A").length;
+console.log(howManyAgrades);
+
+function groupByGrade(data) {
+  const result = { A: [], B: [], C: [], D: [] };
+
+  data.forEach(student => {
+    const grade = student.grade;
+
+    if(result[grade]){
+       result[grade].push(student.name);
+    }
+  });
+
+  return result;
+}
+
+const grouped = groupByGrade(giveGrade);
+console.log(grouped);
