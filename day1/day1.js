@@ -2096,3 +2096,51 @@ function groupByGrade(data) {
 
 const grouped = groupByGrade(giveGrade);
 console.log(grouped);
+
+const productDummy = [
+  { name: "Laptop", price: 7500000, stock: 5 },
+  { name: "Mouse", price: 150000, stock: 50 },
+  { name: "Keyboard", price: 300000, stock: 0 },
+  { name: "Monitor", price: 2000000, stock: 7 },
+  { name: "USB Cable", price: 50000, stock: 100 }
+];
+
+function getOutOfStockProducts(products) {
+  const outOfStock = products.filter(product => product.stock === 0);
+  return outOfStock.map(product => product.name);
+}
+
+console.log(getOutOfStockProducts(productDummy)); // Output: ["Keyboard"]
+
+function totalValueProducts(products) {
+  return products.reduce((total, product) => {
+    return total + (product.price * product.stock);
+  }, 0);
+}
+console.log(totalValueProducts(productDummy)); // Output: 64000000
+
+function getHighestPrice(product){
+    const price = product.map(item => item.price);
+    const highest = Math.max(...price);
+    return product.find(item => item.price === highest).name;
+}
+
+console.log(getHighestPrice(productDummy)); // Output: "Laptop"
+
+function getAvgprice(product){
+    const total = product.reduce((sum, item) => sum + item.price, 0);
+    return total / product.length;
+}
+console.log(getAvgprice(productDummy)); // Output: 2000000
+
+function getProductStatus(products){
+    const status = products.map(product => {
+        return {
+            name: product.name,
+            status: product.stock > 0 ? "Available" : "Out of Stock"
+        };
+    });
+    return status;
+}
+
+console.log(getProductStatus(productDummy));
