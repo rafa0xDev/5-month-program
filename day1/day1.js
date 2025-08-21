@@ -2144,3 +2144,9 @@ function getProductStatus(products){
 }
 
 console.log(getProductStatus(productDummy));
+
+function sortProductsByPrice(products) {
+  return products.slice().sort((a, b) => b.price - a.price);
+}
+
+console.log(sortProductsByPrice(productDummy));
