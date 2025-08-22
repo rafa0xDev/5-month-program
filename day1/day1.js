@@ -2150,3 +2150,21 @@ function sortProductsByPrice(products) {
 }
 
 console.log(sortProductsByPrice(productDummy));
+
+const siswaaa = [
+  { nama: "Andi", kelas: "XII", nilai: 85, hadir: true },
+  { nama: "Budi", kelas: "XI", nilai: 70, hadir: false },
+  { nama: "Citra", kelas: "XII", nilai: 90, hadir: true },
+  { nama: "Dewi", kelas: "XII", nilai: 60, hadir: true },
+  { nama: "Eko", kelas: "XI", nilai: 95, hadir: true },
+  { nama: "Fira", kelas: "XII", nilai: 78, hadir: false }
+];
+
+const formatFilter = siswaaa.filter(s => s.hadir && s.nilai >= 75 && s.kelas === "XII").map(s => ({
+  nama: s.nama,
+  nilai: s.nilai
+}));
+console.log(formatFilter);
+
+const totalNilaiXII = siswaaa.filter(s => s.kelas === "XII").reduce((prev, next) => prev + next.nilai, 0);
+console.log(totalNilaiXII);
