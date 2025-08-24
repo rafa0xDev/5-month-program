@@ -2168,3 +2168,14 @@ console.log(formatFilter);
 
 const totalNilaiXII = siswaaa.filter(s => s.kelas === "XII").reduce((prev, next) => prev + next.nilai, 0);
 console.log(totalNilaiXII);
+
+const teman = ["Andi", "Budi", "Citra", "Dewi", "Eko", "Fira", "Gita", "Hadi", "Ina", "Joko"];
+
+const salam = teman.map(nama => `Halo, ${nama}!`);
+console.log(salam);
+
+const filterNama = teman.filter(nama => nama.length > 4 );
+console.log(filterNama);
+
+const totalHuruf = teman.reduce((total, nama) => total + nama.length, 0);
+console.log(totalHuruf);

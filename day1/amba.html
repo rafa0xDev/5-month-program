@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+            body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f4f7fc;
+            }
+            h1 {
+            color: #333;
+            }
+            .teman-item {
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            display: inline-block;
+            }
+            .c-d {
+            background-color: #ffe4e1;
+            color: #d32f2f;
+            }
+            .lainnya {
+            background-color: #e3f2fd;
+            color: #1976d2;
+            }
+            .total {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #2e7d32;
+            }
+    </style>
+    <title>Teman Amba</title>
+</head>
+<body>
+    <h1>Daftar Teman Amba</h1>
+    <div id="teman-list"></div>
+    <p class="total" id="total-huruf">Total huruf : </p>
+
+    <script>
+        const friendList = document.getElementById('teman-list');
+        
+        const teman = ["Andi", "Budi", "Citra", "Dewi", "Eko", "Fira", "Gita", "Hadi", "Ina", "Joko"];
+
+        const filterCD = teman.filter(nama => nama.toLowerCase().startsWith('c') || nama.toLowerCase().startsWith('d'));
+
+        const objekTeman = teman.map(frend => ({
+            nama: frend,
+            totalHuruf: frend.length
+        }));
+
+        const totalPanjangAJ = teman.filter(nama => nama[0] >= "A" && nama[0] <= "J").reduce((total, nama) => total + nama.length, 0);
+
+        objekTeman.forEach(frend => {
+            const div = document.createElement('div');
+            div.textContent = `${frend.nama} (Total Huruf: ${frend.totalHuruf} huruf)`;
+            div.classList.add('teman-item');
+
+            if(filterCD.includes(frend.nama)) {
+                div.classList.add('c-d');
+            } else {
+                div.classList.add('lainnya');
+            }
+            friendList.appendChild(div);
+        });
+
+        const total = document.getElementById('total-huruf');
+        total.textContent += totalPanjangAJ;
+
+    </script>
+</body>
+</html>
