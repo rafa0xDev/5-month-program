@@ -2179,3 +2179,39 @@ console.log(filterNama);
 
 const totalHuruf = teman.reduce((total, nama) => total + nama.length, 0);
 console.log(totalHuruf);
+
+const tasksplus = [
+  { id: 1, title: "Belajar JavaScript", category: "coding", priority: "high", completed: false },
+  { id: 2, title: "Baca buku", category: "belajar", priority: "medium", completed: true },
+  { id: 3, title: "Olahraga", category: "kesehatan", priority: "high", completed: false },
+  { id: 4, title: "Nonton film", category: "hiburan", priority: "low", completed: false },
+  { id: 5, title: "Review kode", category: "coding", priority: "high", completed: true }
+];
+
+const taskincomplete = tasksplus.filter(task => !task.completed).map(task => {
+    return {
+        name: task.title,
+        category: task.category,
+        priority: task.priority
+    }
+});
+console.log(taskincomplete);
+
+const priorityHigh = tasksplus.filter(task => task.priority === "high").map(task => task.title);
+console.log(priorityHigh);
+
+const codingActive = tasksplus.filter(task => task.category === "coding" && !task.completed).map(task => task.title);
+console.log(codingActive);
+
+const titleTasks = tasksplus.map(task => task.title);
+console.log(titleTasks);
+
+const simpleTask = tasksplus.map(task => ({
+  id: task.id,
+  status: task.completed ? "Completed" : "In Progress"
+}));
+console.log(simpleTask);
+
+const urgentTask = tasksplus.filter(task => task.priority === "high" && !task.completed).map(task => task.title);
+console.log(urgentTask);
+console.log(urgentTask);
