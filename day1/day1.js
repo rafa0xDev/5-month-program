@@ -2214,4 +2214,85 @@ console.log(simpleTask);
 
 const urgentTask = tasksplus.filter(task => task.priority === "high" && !task.completed).map(task => task.title);
 console.log(urgentTask);
-console.log(urgentTask);
+
+let daftarTugas = [
+  { id: 1, deskripsi: "Belajar dasar JavaScript", selesai: false },
+  { id: 2, deskripsi: "Latihan fungsi dan perulangan", selesai: true },
+  { id: 3, deskripsi: "Membuat to-do list sederhana", selesai: false }
+];
+
+// Fungsi untuk menambahkan tugas dan memperbarui array
+function tambahTugas(newTask) {
+    // Mencari ID terakhir
+    const idTerakhir = daftarTugas.length > 0
+        ? Math.max(...daftarTugas.map(tugas => tugas.id))
+        : 0;
+
+    // Menghitung ID baru
+    const idBaru = idTerakhir + 1;
+
+    // Membuat objek tugas baru
+    const tugasBaru = {
+        id: idBaru,
+        deskripsi: newTask,
+        selesai: false
+    };
+
+    // Menambahkan tugas baru ke array dan mengupdate array global
+    daftarTugas = [...daftarTugas, tugasBaru];
+}
+
+function tampilkanSemuaTugas(){
+    daftarTugas.forEach((task, index) => {
+        console.log(`Task ${index + 1}: ${task.deskripsi} [${task.selesai ? "Selesai" : "Belum Selesai"}]`);
+    });
+}
+
+// Fungsi untuk menghapus tugas dan memperbarui array
+function hapusTugas(id) {
+    daftarTugas = daftarTugas.filter(task => task.id !== id);
+}
+
+// Fungsi untuk menandai tugas selesai dan memperbarui array
+function tandaiSelesai(id) {
+    const tugasDitemukan = daftarTugas.find(task => task.id === id);
+
+    if (!tugasDitemukan) {
+        console.log(`Tugas dengan ID ${id} tidak ditemukan.`);
+        return; // Menghentikan eksekusi fungsi
+    }
+
+    daftarTugas = daftarTugas.map(task => {
+        if (task.id === id) {
+            return { ...task, selesai: true };
+        }
+        return task;
+    });
+}
+
+function listTasks(status){
+    return daftarTugas.filter(task => task.selesai === status);
+}
+
+// PENGGUNAAN
+console.log("--- Daftar Tugas Awal ---");
+console.log(daftarTugas);
+
+console.log("\n--- Menampilkan Semua Tugas ---");
+tampilkanSemuaTugas();
+
+tambahTugas("Belajar Node.js");
+console.log("\n--- Setelah Menambah Tugas Baru ---");
+console.log(daftarTugas);
+
+tandaiSelesai(1);
+console.log("\n--- Setelah Menandai Tugas 1 Selesai ---");
+console.log(daftarTugas);
+
+hapusTugas(2);
+console.log("\n--- Setelah Menghapus Tugas 2 ---");
+console.log(daftarTugas);
+
+console.log("\n--- Daftar Tugas yang Belum Selesai ---");
+console.log(listTasks(false));
+
