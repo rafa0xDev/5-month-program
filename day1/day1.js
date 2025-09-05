@@ -2353,3 +2353,19 @@ function disemvowel(str) {
 
 console.log(disemvowel("This website is for losers LOL!"));
 // Output: "Ths wbst s fr lsrs LL!"
+
+// Vowel Counter
+function getCount(str) {
+  const vokal = ["a" , "i" ,"o" ,"u" , "e"];
+  const chars = Array.from(str);
+  let count = 0 ;
+  
+  for(let i = 0; i < chars.length; i++){
+    if(vokal.includes(chars[i])){
+      count++;
+    }
+  }
+}
+  return count;
+console.log(getCount("abracadabra")); // 5  
+
