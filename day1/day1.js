@@ -2365,7 +2365,19 @@ function getCount(str) {
       count++;
     }
   }
-}
   return count;
+}
 console.log(getCount("abracadabra")); // 5  
 
+// Unique In Order
+function uniqeInOrder(iterable){
+    let result = [];
+    for(let item of iterable){
+        if(result.length === 0 || result[result.length - 1] !== item){
+            result.push(item);
+        }
+    }
+    return result;
+}
+console.log(uniqeInOrder('AAAABBBCCDAABBB')); // ['A', 'B', 'C', 'D', 'A', 'B']
+console.log(uniqeInOrder([1,2,2,3,3])); // [1, 2, 3]
