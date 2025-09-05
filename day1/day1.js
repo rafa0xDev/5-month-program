@@ -2333,3 +2333,17 @@ console.log(filterPrice);
 console.log(avgPrice);
 console.log(groupedByCategory)
 console.log(addDiscount);
+
+// Narcissistic Number Checker
+function narcissistic(value) {
+  const digits = value.toString().split("").map(Number); // ← titik di sini
+  const k = digits.length;
+  const total = digits.reduce((sum, d) => sum + Math.pow(d, k), 0);
+  return total === value;
+}
+
+console.log(narcissistic(153));   // true
+console.log(narcissistic(1652));  // false
+console.log(narcissistic(9474));  // true
+console.log(narcissistic(1938));  // false
+
