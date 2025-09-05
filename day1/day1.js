@@ -2347,3 +2347,9 @@ console.log(narcissistic(1652));  // false
 console.log(narcissistic(9474));  // true
 console.log(narcissistic(1938));  // false
 
+function disemvowel(str) {
+    return str.replace(/[aeiou]/gi, '');
+}
+
+console.log(disemvowel("This website is for losers LOL!"));
+// Output: "Ths wbst s fr lsrs LL!"
