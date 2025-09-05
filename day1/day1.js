@@ -2296,3 +2296,40 @@ console.log(daftarTugas);
 console.log("\n--- Daftar Tugas yang Belum Selesai ---");
 console.log(listTasks(false));
 
+const dummyproduk = [
+  { nama: "Buku Tulis", harga: 8000, kategori: "Alat Tulis", diskon: false },
+  { nama: "Mouse Wireless", harga: 120000, kategori: "Elektronik", diskon: true },
+  { nama: "Pensil 2B", harga: 3000, kategori: "Alat Tulis", diskon: false },
+  { nama: "Snack Ring", harga: 7000, kategori: "Makanan", diskon: true },
+  { nama: "Keyboard Mechanical", harga: 850000, kategori: "Elektronik", diskon: false },
+  { nama: "Penghapus", harga: 2500, kategori: "Alat Tulis", diskon: false },
+  { nama: "Minuman Soda", harga: 6000, kategori: "Makanan", diskon: true },
+  { nama: "Power Bank 10000mAh", harga: 150000, kategori: "Elektronik", diskon: true },
+  { nama: "Sticky Notes", harga: 12000, kategori: "Alat Tulis", diskon: true },
+  { nama: "Chiki Balls", harga: 5000, kategori: "Makanan", diskon: false }
+];
+
+const filterPrice = dummyproduk.filter(item => item.harga < 50000);
+
+const totalPrice = filterPrice.reduce((prev, next) => prev + next.harga, 0);
+const avgPrice = totalPrice / filterPrice.length;
+
+const groupedByCategory = dummyproduk.reduce((prev, next) => {
+    if(!prev[next.kategori]){
+        prev[next.kategori] = [];
+    }
+    prev[next.kategori].push(next);
+    return prev;
+}, {});
+
+const addDiscount = filterPrice.map(item => {
+    if(item.diskon){
+        return {...item, hargaDiskon: item.harga * 10};
+    }
+    return {...item,hargaDiskon: item.harga};
+})
+
+console.log(filterPrice);
+console.log(avgPrice);
+console.log(groupedByCategory)
+console.log(addDiscount);
