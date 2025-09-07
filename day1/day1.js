@@ -2456,3 +2456,36 @@ function sumTwoSmallestNumbers(numbers) {
   return resultSum
 }
 
+ /**
+ * Fungsi untuk membentuk pola string dari input.
+ * Setiap huruf akan ditulis:
+ *  - huruf pertama: huruf besar
+ *  - huruf setelahnya: huruf kecil diulang sesuai posisi index
+ * Lalu semua hasil digabung dengan tanda "-".
+ *
+ * @param {string} s - String input (hanya huruf a..z atau A..Z)
+ * @returns {string} - String hasil pola
+ *
+ * Contoh:
+ * accum("abcd") -> "A-Bb-Ccc-Dddd"
+ */
+function accum(s) {
+  const arrS = s.split("").reduce((prev, huruf, i) => {
+    const format = huruf.toUpperCase() + huruf.toLowerCase().repeat(i);
+    prev.push(format);
+    return prev;
+  }, []).join("-");
+
+  return arrS;
+}
+
+//gpt version
+function accum(s) {
+	// your code
+    return s.split('').reduce((prev, Huruf, i) => {
+      const format = Huruf.toUpperCase() + Huruf.toLowerCase().repeat(i);
+      prev.push(format);
+      return prev;
+    }, []).join('-')
+  
+}
