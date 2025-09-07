@@ -2446,3 +2446,13 @@ function dnaStrandV2(dna){
   }
   return result
 }
+
+// Sum of two smallest numbers
+function sumTwoSmallestNumbers(numbers) {  
+  // Code here
+  const sortFrSmall = numbers.sort((a,b) => a - b);
+  const twoSmallestNum = sortFrSmall.slice(0, 2);
+  const resultSum = twoSmallestNum[0] + twoSmallestNum[1];
+  return resultSum
+}
+
