@@ -2381,3 +2381,44 @@ function uniqeInOrder(iterable){
 }
 console.log(uniqeInOrder('AAAABBBCCDAABBB')); // ['A', 'B', 'C', 'D', 'A', 'B']
 console.log(uniqeInOrder([1,2,2,3,3])); // [1, 2, 3]
+
+/**
+ * dnaStrand
+ * ----------
+ * Fungsi ini menerima sebuah string DNA,
+ * lalu mengembalikan string komplemennya
+ * berdasarkan aturan pasangan basa:
+ * - A ↔ T
+ * - C ↔ G
+ *
+ * @param {string} dna - String DNA yang berisi huruf 'A', 'T', 'C', atau 'G'
+ * @returns {string} - String DNA komplemen
+ *
+ * Contoh:
+ * dnaStrand("ATTGC") -> "TAACG"
+ * dnaStrand("GTAT")  -> "CATA"
+ */
+function dnaStrand(dna){
+  let result = ""
+  for(const Huruf of dna){
+    switch(true){
+        case Huruf == 'A':
+          result += 'T'
+          break
+        case Huruf == 'T':
+          result += 'A'
+          break
+        case Huruf == 'C':
+          result += 'G'
+          break
+        case Huruf == 'G':
+          result += 'C'
+          break
+        default :
+          return 'ambatublow'  // fallback jika ada karakter tidak valid
+    }
+  }
+  return result
+}
+
+console.log(dnaStrand('CATA'))
