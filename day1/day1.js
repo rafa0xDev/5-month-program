@@ -2422,3 +2422,27 @@ function dnaStrand(dna){
 }
 
 console.log(dnaStrand('CATA'))
+
+/*mencoba menulis ulang fungsi yang sama tetapi dengan pendekatan yang berbeda */
+function dnaStrandV2(dna){
+  let result = ""
+  for(const Huruf of dna){
+    switch(Huruf){
+        case 'A':
+          result += 'T'
+          break
+        case 'T':
+          result += 'A'
+          break 
+        case 'C':
+          result += 'G'
+          break
+        case 'G':
+          result += 'C'
+          break
+        default :
+          return 'ambatubloww'
+    }
+  }
+  return result
+}
