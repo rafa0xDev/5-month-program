@@ -2518,3 +2518,23 @@ function solution (roman) {
 }
 
 console.log(solution("XXI")); // 21
+
+let namahytm = "ambatukam"
+for(let i = 0; i < namahytm.length; i++){
+    console.log(namahytm[i]);
+}
+
+function moveZeros(arr) {
+  let zeroVal = []
+  let othersVal = []
+  
+  for(let i = 0; i < arr.length; i++){
+    if(arr[i] === 0){
+      zeroVal.push(arr[i])
+    }else{
+      othersVal.push(arr[i])
+    }
+  }
+  
+  return othersVal.concat(zeroVal);
+}
