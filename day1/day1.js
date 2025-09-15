@@ -2539,3 +2539,15 @@ function moveZeros(arr) {
   return othersVal.concat(zeroVal);
 }
 
+function findEvenIndex(arr) {
+  //Code goes here!
+  for(let i = 0; i < arr.length; i++){
+    const rightsum = arr.slice(0, i).reduce((a, b) => a + b, 0);
+    const leftsum = arr.slice(i + 1).reduce((a, b) => a + b, 0);
+    
+    if(rightsum === leftsum){
+      return i
+    }
+  }
+    return -1;
+}
