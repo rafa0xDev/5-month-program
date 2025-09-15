@@ -2579,3 +2579,11 @@ function times(right) {
 function dividedBy(right) {
   return function(left) { return Math.floor(left / right); };
 }
+
+function createPhoneNumber(numbers){
+  const fnum = numbers.slice(0 , 3).join("");
+  const snum = numbers.slice(3, 6).join("");
+  const lnum = numbers.slice(6, 10).join("");
+  
+  return `(${fnum}) ${snum}-${lnum}`;
+}
