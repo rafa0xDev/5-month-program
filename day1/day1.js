@@ -2587,3 +2587,12 @@ function createPhoneNumber(numbers){
   
   return `(${fnum}) ${snum}-${lnum}`;
 }
+
+function digPow(n, p){
+  const digits = String(n).split('').map(number);
+  let sum = digits.reduce((acc, digit, i) => acc + digit ** (p + i), 0);
+    return sum / n;
+  } else {
+    return -1;
+  }
+}
