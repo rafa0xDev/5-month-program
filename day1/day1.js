@@ -2644,3 +2644,4 @@ class PaginationHelper {
     return Math.floor(itemIndex / this.itemsPerPage);
   }
 }
+
