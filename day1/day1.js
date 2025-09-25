@@ -2591,8 +2591,56 @@ function createPhoneNumber(numbers){
 function digPow(n, p){
   const digits = String(n).split('').map(number);
   let sum = digits.reduce((acc, digit, i) => acc + digit ** (p + i), 0);
+  if (sum % n === 0) {
     return sum / n;
   } else {
     return -1;
+  }
+}
+
+function rgb(r, g, b) {
+  function toHex(n) {
+    // pastikan angka bulat dan ada di 0–255
+    n = Math.round(Math.max(0, Math.min(255, n)));
+    let hex = n.toString(16).toUpperCase();
+    return hex.length === 1 ? "0" + hex : hex;
+  }
+
+  return toHex(r) + toHex(g) + toHex(b);
+}
+
+class PaginationHelper {
+  constructor(collection, itemsPerPage) {
+    this.collection = collection;      // simpan array item
+    this.itemsPerPage = itemsPerPage;  // simpan kapasitas per halaman
+  }
+
+  itemCount() {
+    return this.collection.length; // banyak item total
+  }
+
+  pageCount() {
+    return Math.ceil(this.itemCount() / this.itemsPerPage); // total halaman
+  }
+
+  pageItemCount(pageIndex) {
+    // kalau halaman tidak valid
+    if (pageIndex < 0 || pageIndex >= this.pageCount()) return -1;
+
+    // kalau halaman terakhir
+    if (pageIndex === this.pageCount() - 1) {
+      return this.itemCount() % this.itemsPerPage || this.itemsPerPage;
+    }
+
+    // kalau halaman biasa
+    return this.itemsPerPage;
+  }
+
+  pageIndex(itemIndex) {
+    // kalau item tidak valid
+    if (itemIndex < 0 || itemIndex >= this.itemCount()) return -1;
+
+    // halaman dihitung dengan pembagian bulat
+    return Math.floor(itemIndex / this.itemsPerPage);
   }
 }
