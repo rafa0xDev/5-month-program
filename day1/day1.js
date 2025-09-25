@@ -2645,3 +2645,50 @@ class PaginationHelper {
   }
 }
 
+function rot13(str) {
+  const result = []
+  str.split('').forEach((char) => {
+    const charr = char.charCodeAt(0)
+    
+    if(charr >= 65 && charr <= 90){
+      const base = 65
+      const shifted = ((charr - base + 13) % 26) + base;
+      result.push(String.fromCharCode(shifted));
+    }
+    
+    else if(charr >= 97 && charr <= 122){
+      const base = 97
+      const shifted = ((charr - base + 13) % 26) + base;
+      result.push(String.fromCharCode(shifted));
+    }
+    
+    else {
+      result.push(char);
+    }
+    
+  })
+  return result.join('')
+}
+
+function firstNonRepeatingLetter(s) {
+  // Add your code here
+  const freq = {}
+  s.split('').forEach((char) => {
+    const lowercase = char.toLowerCase()
+    if(freq[lowercase]){
+      freq[lowercase] += 1
+    } else {
+      freq[lowercase] = 1
+    }
+  })
+  
+   for (const char of s) {
+    if (freq[char.toLowerCase()] === 1) {
+      return char;
+    }
+  }
+
+  // kalau nggak ada yang unik
+  return "";
+  
+}
