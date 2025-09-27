@@ -2756,3 +2756,20 @@ function isSpam(number) {
   
   return false // NOT SPAM
 }
+
+function tribonacciSequence(start, n) {
+  const result = start.slice()
+  if(n === 0) {
+    return []
+  } 
+  
+  if(n < 3) {
+    return start.slice(0, n)
+  }
+
+  while(result.length < n){
+    let next = result[result.length - 3] + result[result.length - 2] + result[result.length - 1]
+    result.push(next)
+  }
+  return result;
+}
