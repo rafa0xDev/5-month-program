@@ -2692,3 +2692,67 @@ function firstNonRepeatingLetter(s) {
   return "";
   
 }
+
+function isSpam(number) {
+  const splitPN = number.split(' ')
+  const country = splitPN[0].slice(1)
+  const area = splitPN[1].replace('(', '').replace(')', '')
+  const local = splitPN[2].split('-')
+
+  if(country.length > 2 || !country.startsWith("0")){
+    return "SPAM"
+  }
+
+  if(parseInt(area) < 200 || parseInt(area) > 900){
+    return "SPAM"
+  }
+  
+  ccc = local[0]
+  ddd = local[1]
+  let sum = ccc.split('').reduce((total, digit) => total + parseInt(digit), 0)
+
+  if(ddd.includes(sum.toString())){
+    return "SPAM"
+  }
+
+  const allDigits = country + area + ccc + ddd
+  if(/(\d)\1{3}/.test(allDigits)){
+    return "SPAM"
+  }
+  
+  return "NOT SPAM"
+}
+
+function isSpam(number) {
+  const splitPN = number.split(' ')
+  const country = splitPN[0].slice(1)
+  const area = splitPN[1].replace('(', '').replace(')', '')
+  const local = splitPN[2].split('-')
+
+  // ❌ cek kode negara
+  if (country.length > 2 || !country.startsWith("0")) {
+    return true // SPAM
+  }
+
+  // ❌ cek kode area
+  if (parseInt(area) < 200 || parseInt(area) > 900) {
+    return true // SPAM
+  }
+  
+  // ❌ cek jumlah digit ccc
+  const ccc = local[0]
+  const ddd = local[1]
+  let sum = ccc.split('').reduce((total, digit) => total + parseInt(digit), 0)
+
+  if (ddd.includes(sum.toString())) {
+    return true // SPAM
+  }
+
+  // ❌ cek digit berulang lebih dari 3x
+  const allDigits = country + area + ccc + ddd
+  if (/(\d)\1{3}/.test(allDigits)) {
+    return true // SPAM
+  }
+  
+  return false // NOT SPAM
+}
