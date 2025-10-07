@@ -2773,3 +2773,20 @@ function tribonacciSequence(start, n) {
   }
   return result;
 }
+
+function permutations(string) {
+  const result = []
+	if(string.length === 1){
+    return [string]
+  } else {
+    for(let i = 0; i < string.length; i++){
+       const currentChar = string[i]
+       const remaining = string.slice(0, i) + string.slice(i + 1)
+       const perms = permutations(remaining);
+      for (let perm of perms) {
+        result.push(currentChar + perm);
+      }
+    }
+  }
+  return result
+}
