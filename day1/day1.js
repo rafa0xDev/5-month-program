@@ -2788,5 +2788,5 @@ function permutations(string) {
       }
     }
   }
-  return result
+  return [...new Set(result)]
 }
