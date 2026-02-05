@@ -2790,3 +2790,23 @@ function permutations(string) {
   }
   return [...new Set(result)]
 }
+
+function solution(text, markers) {
+  // TODO
+  const splitText = text.split(/\r?\n/)
+  let hasilAkhir = []
+  
+  for(let i = 0; i < splitText.length; i++ ){
+    let hasil = [];
+    for(let h = 0; h < splitText[i].length; h++ ){
+      if(markers.includes(splitText[i][h])){
+        break
+      }
+      else {
+        hasil.push(splitText[i][h])
+      }
+    }
+    hasilAkhir.push(hasil.join('').trimEnd())
+  }
+  return hasilAkhir.join('\n')
+}
