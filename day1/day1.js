@@ -2810,3 +2810,78 @@ function solution(text, markers) {
   }
   return hasilAkhir.join('\n')
 }
+
+function getGeneration(cells, generations) {
+  // Handle edge case
+  if (cells.length === 0 || cells.every(row => row.length === 0)) {
+    return [[]];
+  }
+  
+  for (let i = 0; i < generations; i++) {
+    // EXPAND: Tambah padding 1 sel di semua sisi
+    let width = cells[0].length;
+    let expanded = [new Array(width + 2).fill(0)]; // Top
+    for (let row of cells) {
+      expanded.push([0, ...row, 0]); // Kiri & Kanan
+    }
+    expanded.push(new Array(width + 2).fill(0)); // Bottom
+    
+    // Proses generasi berikutnya
+    let newArr = [];
+    for (let y = 0; y < expanded.length; y++) {
+      newArr[y] = [];
+      for (let x = 0; x < expanded[y].length; x++) {
+        let neighbourCount = 0;
+        for (let dy = -1; dy <= 1; dy++) {
+          for (let dx = -1; dx <= 1; dx++) {
+            if (dy === 0 && dx === 0) continue;
+            const ny = y + dy;
+            const nx = x + dx;
+            if (ny < 0 || ny >= expanded.length || nx < 0 || nx >= expanded[y].length) {
+              continue;
+            }
+            if (expanded[ny][nx] === 1) {
+              neighbourCount++;
+            }
+          }
+        }
+        
+        // Aturan hidup / mati
+        if (expanded[y][x] === 1) {
+          newArr[y][x] = (neighbourCount === 2 || neighbourCount === 3) ? 1 : 0;
+        } else {
+          newArr[y][x] = (neighbourCount === 3) ? 1 : 0;
+        }
+      }
+    }
+    cells = newArr;
+  }
+  
+  // CROP: Buang baris/kolom kosong di pinggir
+  let minY = cells.length, maxY = -1;
+  let minX = cells[0].length, maxX = -1;
+  
+  for (let y = 0; y < cells.length; y++) {
+    for (let x = 0; x < cells[y].length; x++) {
+      if (cells[y][x] === 1) {
+        minY = Math.min(minY, y);
+        maxY = Math.max(maxY, y);
+        minX = Math.min(minX, x);
+        maxX = Math.max(maxX, x);
+      }
+    }
+  }
+  
+  // Jika tidak ada sel hidup
+  if (maxY === -1) {
+    return [[]]
+  }
+    
+  // Potong sesuai batas
+  let result = [];
+  for (let y = minY; y <= maxY; y++) {
+    result.push(cells[y].slice(minX, maxX + 1));
+  }
+  
+  return result;
+}
