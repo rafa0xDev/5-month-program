@@ -2885,3 +2885,15 @@ function getGeneration(cells, generations) {
   
   return result;
 }
+
+function slope(points){
+  const [x1, y1, x2, y2] = points
+  const x = (x2 - x1)
+  
+  if(x === 0) {
+    return "undefined"
+  } else {
+    const slope = (y2 - y1) / (x2 - x1)
+    return `${slope}`
+  }
+}
