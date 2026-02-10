@@ -2791,7 +2791,7 @@ function permutations(string) {
   return [...new Set(result)]
 }
 
-function solution(text, markers) {
+function solution(text, markers = []) {
   // TODO
   const splitText = text.split(/\r?\n/)
   let hasilAkhir = []
@@ -2897,3 +2897,10 @@ function slope(points){
     return `${slope}`
   }
 }
+
+function greet (name, owner) {
+  // Add code here
+  return (name === owner) ? 'Hello boss' : 'Hello guest'
+}
+
+console.log(greet('Daniel', 'Daniel')) // 'Hello boss'
